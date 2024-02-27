@@ -1,0 +1,28 @@
+# In this section, I will take you through a tutorial on how to generate QR codes with Python. 
+#To generate QR Codes with Python you need to install only one Python library for this task:
+
+!pip install pyqrcode
+pip install pypng
+import pyqrcode
+from IPython.display import display, Image
+# Create a QR code
+url = pyqrcode.create('https://www.youtube.com')
+# Save the QR code as an image
+url.png('youtube.png', scale=8)
+# Display the QR code image
+display(Image(filename='youtube.png'))
+
+We can also enter a unique URL to generate the QR code.
+# Get the new URL from user input
+QR = input('Enter the new URL: ')
+# Replace invalid characters in the URL with underscores
+filename_safe_url = ''.join(c if c.isalnum() or c in ['-', '_'] else '_' for c in QR)
+# Create a QR code
+url = pyqrcode.create(QR)
+# Save the QR code as an image with a safe filename
+url.png(f'{filename_safe_url}.png', scale=8)
+
+# Display the QR code image
+display(Image(filename=f'{filename_safe_url}.png'))
+
+
